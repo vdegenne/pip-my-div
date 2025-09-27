@@ -1,0 +1,40 @@
+{
+	"name": "pip-element",
+	"version": "0.1.0",
+	"description": "",
+	"type": "module",
+	"main": "",
+	"module": "",
+	"exports": {
+		".": {}
+	},
+	"types": "",
+	"files": [],
+	"devDependencies": {
+		"lit": "^3.3.1",
+		"typescript": "^5.9.2",
+		"vite": "^7.1.7",
+		"wireit": "^0.14.12"
+	},
+	"scripts": {
+		"dev": "wireit",
+		"build": "wireit"
+	},
+	"wireit": {
+		"dev": {
+			"command": "vite",
+			"service": true
+		},
+		"build": {
+			"command": "tsc --pretty",
+			"clean": "if-file-deleted",
+			"files": [
+				"./tsconfig.json",
+				"./src"
+			],
+			"output": [
+				"./lib"
+			]
+		}
+	}
+}
