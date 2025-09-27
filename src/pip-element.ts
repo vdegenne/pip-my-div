@@ -53,35 +53,37 @@ export class PipElement extends LitElement {
 	// -------------------
 	// 2. Initiate PiP
 	// -------------------
+
 	async pip() {
 		const target = this.target
-		if (!target) {
-			console.warn('<pip-element> has no content to snapshot')
-			return
-		}
+		if (!target) return
 
-		// Create video element for PiP if not exists
 		if (!this.#video) {
 			this.#video = document.createElement('video')
 			this.#video.autoplay = true
-			this.#video.muted = true // required for autoplay
+			this.#video.muted = true
 			this.#video.playsInline = true
 			this.#video.style.display = 'none'
 			document.body.appendChild(this.#video)
+
+			// Listen for PiP close
+			this.#video.addEventListener('leavepictureinpicture', () => {
+				if (this.#loopInterval) {
+					clearInterval(this.#loopInterval)
+					this.#loopInterval = undefined
+				}
+			})
 		}
 
-		// Initial canvas snapshot
 		await this.contentToCanvas(target)
 
-		// Start the stream if not already started
 		if (!this.#pipStream) {
-			this.#pipStream = this.#canvas.captureStream(5) // 1 fps placeholder
+			this.#pipStream = this.#canvas.captureStream(5)
 			this.#video.srcObject = this.#pipStream
 			await this.#video.play()
 			await this.#video.requestPictureInPicture()
 		}
 
-		// Start the loop
 		this.loop()
 	}
 
@@ -100,14 +102,14 @@ export class PipElement extends LitElement {
 
 	// Helper to detect content changes and update canvas
 	private updateCanvasIfChanged = async () => {
+		if (!this.#loopInterval) return // stop if PiP loop isn't running
+
 		const target = this.target
-		// Simple check: serialize innerHTML
 		const current = target.innerHTML
-		if (current === this.#lastSnapshot) return // no change
+		if (current === this.#lastSnapshot) return
 		this.#lastSnapshot = current
 
 		await this.contentToCanvas(target)
-		// PiP automatically reflects the updated canvas via captureStream
 	}
 
 	disconnectedCallback() {
