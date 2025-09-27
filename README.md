@@ -1,6 +1,6 @@
 # pip-my-div *
 
-* not to confuse with pimp my ride,
+\* not to confuse with pimp my ride,
 
 is a custom element helper to turn everything into a pip window.
 Just like a video can be picture-in-picture and chill in one corner of your screen, so is any element on your web page.
