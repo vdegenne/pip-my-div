@@ -1,6 +1,6 @@
 {
-	"name": "pip-element",
-	"version": "0.1.1",
+	"name": "pip-my-div",
+	"version": "0.1.2",
 	"description": "PIP any HTML element.",
 	"type": "module",
 	"exports": {
