@@ -1,6 +1,8 @@
-import html2canvas from 'html2canvas'
+import * as _html2canvas from 'html2canvas'
 import {LitElement, css, html} from 'lit'
 import {customElement} from 'lit/decorators.js'
+
+const html2canvas = _html2canvas.default
 
 @customElement('pip-element')
 export class PipElement extends LitElement {

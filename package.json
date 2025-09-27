@@ -1,15 +1,19 @@
 {
-	"name": "pip-my-div",
-	"version": "0.1.0",
-	"description": "",
+	"name": "pip-element",
+	"version": "0.1.1",
+	"description": "PIP any HTML element.",
 	"type": "module",
-	"main": "",
-	"module": "",
 	"exports": {
-		".": {}
+		".": {
+			"import": "./lib/index.js",
+			"types": "./lib/index.d.ts"
+		}
 	},
-	"types": "",
-	"files": [],
+	"files": [
+		"./README.md",
+		"./screencast.gif",
+		"./lib"
+	],
 	"devDependencies": {
 		"typescript": "^5.9.2",
 		"vite": "^7.1.7",
@@ -25,7 +29,7 @@
 			"service": true
 		},
 		"build": {
-			"command": "tsc --pretty",
+			"command": "tsc",
 			"clean": "if-file-deleted",
 			"files": [
 				"./tsconfig.json",

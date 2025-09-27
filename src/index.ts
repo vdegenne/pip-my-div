@@ -1,1 +1,1 @@
-console.log('test')
+export * from './pip-element.js'
