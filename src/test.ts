@@ -6,16 +6,15 @@ import {type PipElement} from './pip-element.js'
 @customElement('test-shell')
 class TestShell extends LitElement {
 	@query('pip-element') pipElement!: PipElement
+
 	render() {
 		return html`
-			<div>
-				<pip-element>
-					<div style="background:red">
-						<div>hello</div>
-						<div>world</div>
-					</div>
-				</pip-element>
-			</div>
+			<pip-element
+				style="background-color:red;width:400px;height:400px;display:flex;align-items:center;justify-content:center;flex-direction:column;font-size:4rem"
+			>
+				<div>hello</div>
+				<div>world</div>
+			</pip-element>
 			<button @click=${this.#pipMe}>pip me</button>
 		`
 	}
